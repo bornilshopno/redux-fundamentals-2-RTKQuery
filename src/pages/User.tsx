@@ -1,11 +1,10 @@
 import AddUserModal from "@/components/module/users/AddUserModal"
 import UserCard from "@/components/module/users/userCard"
-import { selectUsers } from "@/redux/features/users/userSlice"
 import {  useAppSelector } from "@/redux/hooks/hooks"
 
 
 export const User = () => {
-    const users = useAppSelector(selectUsers)
+    const users = []
     // const dispatch=useAppDispatch()      
 
   return (

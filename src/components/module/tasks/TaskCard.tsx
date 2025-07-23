@@ -1,13 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { cn } from "@/lib/utils";
-import { deleteTask, toggleCompleted } from "@/redux/features/tasks/taskSlice";
+// import { deleteTask, toggleCompleted } from "@/redux/features/tasks/taskSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks";
 import type { Itask } from "@/types";
 
 import { Trash2 } from "lucide-react";
 import { UpdateTaskModal } from "./UpdateTaskModal";
-import { selectUsers } from "@/redux/features/users/userSlice";
+
 
 
 interface IProps{
@@ -16,7 +16,7 @@ interface IProps{
 
 const TaskCard = ({task}:IProps) => {
     const dispatch=useAppDispatch();
-    const users=useAppSelector(selectUsers)
+    const users=[]
     const assignedTaskUser= users?.find((user)=>user.id===task.assignedUser)
     console.log(assignedTaskUser)
     return (
@@ -36,10 +36,10 @@ const TaskCard = ({task}:IProps) => {
                 </div>
                 <div className="flex gap-3 items-center">
                     <UpdateTaskModal selectedTask={task} />
-                    <Button variant="link" className="p-0 text-red-500" onClick={()=>dispatch(deleteTask(task.id))}>
+                    <Button variant="link" className="p-0 text-red-500" >
                         <Trash2 />
                     </Button>
-                    <Checkbox onClick={()=>dispatch(toggleCompleted(task.id))} />
+                    <Checkbox  />
                 </div>
             </div>
             <p className="mt-5">{task.description}</p>

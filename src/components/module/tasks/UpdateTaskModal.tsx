@@ -16,8 +16,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
-import { updateTask } from "@/redux/features/tasks/taskSlice"
-import { selectUsers } from "@/redux/features/users/userSlice"
+
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks"
 import type { Itask } from "@/types"
 import { format } from "date-fns"
@@ -28,14 +27,12 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form"
 
 export function UpdateTaskModal({ selectedTask }: { selectedTask: Itask }) {
   const form = useForm({ defaultValues: selectedTask });
-  const users = useAppSelector(selectUsers);
+  const users = []
   console.log("SELECTED DATA PROP", selectedTask)
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);
 
-
-    dispatch(updateTask(data as Itask))
   }
   return (
     <Dialog >

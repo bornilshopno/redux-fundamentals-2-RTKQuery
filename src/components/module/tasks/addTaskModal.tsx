@@ -16,8 +16,7 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Textarea } from "@/components/ui/textarea"
 import { cn } from "@/lib/utils"
-import { addTask } from "@/redux/features/tasks/taskSlice"
-import { selectUsers } from "@/redux/features/users/userSlice"
+
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks"
 import type { Itask } from "@/types"
 import { format } from "date-fns"
@@ -31,11 +30,10 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form"
 export function AddTaskModal() {
     const form = useForm();
     const dispatch = useAppDispatch();
-    const users=useAppSelector(selectUsers);
+    const users=[];
     const [open,setIsOpen]= useState(false)
     const onSubmit: SubmitHandler<FieldValues> = (data) => {
         console.log(data, 'from onSubmit');
-        dispatch(addTask(data as Itask))
         setIsOpen(false);
         form.reset()
     }

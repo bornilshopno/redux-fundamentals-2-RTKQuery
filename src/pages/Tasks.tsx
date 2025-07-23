@@ -1,15 +1,23 @@
 import { AddTaskModal } from "@/components/module/tasks/addTaskModal"
 import TaskCard from "@/components/module/tasks/TaskCard"
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
-import { selectFilter, selectTask, updateFilter } from "@/redux/features/tasks/taskSlice"
+import { useGetTasksQuery } from "@/redux/api/baseApi"
+
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks"
+import type { Itask } from "@/types"
 
 
 export const Tasks = () => {
-    const tasks = useAppSelector(selectTask)
-    const filter = useAppSelector(selectFilter)
+    const { isLoading, data}=useGetTasksQuery(undefined)
+    console.log(isLoading, data)
+    if(isLoading){
+        return <h1>Data is Loadin...</h1>
+    }
+
+    // const tasks = useAppSelector(selectTask)
+    // const filter = useAppSelector(selectFilter)
     const dispatch=useAppDispatch()
-    console.log(tasks, filter)
+
     return (
         <div className="mx-auto max-w-7xl px-5 mt-20">
             <div className="flex justify-between">
@@ -17,10 +25,10 @@ export const Tasks = () => {
                 <div className="flex gap-3">
                     <Tabs defaultValue="All">
                         <TabsList>
-                            <TabsTrigger onClick={()=>dispatch(updateFilter('All'))} value="All">All</TabsTrigger>
-                            <TabsTrigger onClick={()=>dispatch(updateFilter('Low'))} value="Low">Low</TabsTrigger>
-                            <TabsTrigger onClick={()=>dispatch(updateFilter('Medium'))} value="Medium">Medium</TabsTrigger>
-                            <TabsTrigger onClick={()=>dispatch(updateFilter('High'))} value="High">High</TabsTrigger>
+                            <TabsTrigger  value="All">All</TabsTrigger>
+                            <TabsTrigger  value="Low">Low</TabsTrigger>
+                            <TabsTrigger  value="Medium">Medium</TabsTrigger>
+                            <TabsTrigger  value="High">High</TabsTrigger>
                         </TabsList>
                     </Tabs>
                     <AddTaskModal />
@@ -28,7 +36,7 @@ export const Tasks = () => {
             </div>
 
             <div className="space-y-5 mt-5">
-                {tasks?.map(task => <TaskCard task={task} key={task.id} />)}
+                {data.tasks?.map((task:Itask )=> <TaskCard task={task} key={task._id} />)}
             </div>
         </div>
     )
