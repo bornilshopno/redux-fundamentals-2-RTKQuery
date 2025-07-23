@@ -3,6 +3,8 @@ import { Dialog, DialogClose, DialogContent, DialogFooter, DialogHeader, DialogT
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 
+
+
 import { useAppDispatch } from "@/redux/hooks/hooks";
 // import type { IUser } from "@/types";
 import {  useForm, type FieldValues, type SubmitHandler } from "react-hook-form";
@@ -11,10 +13,8 @@ import {  useForm, type FieldValues, type SubmitHandler } from "react-hook-form"
 const AddUserModal = () => {
       const form = useForm();
         const dispatch= useAppDispatch();
-        const onSubmit: SubmitHandler<FieldValues> = (data) => {
-            console.log(data);
-           
-        }
+
+       
     return (
          <Dialog>
             <form>

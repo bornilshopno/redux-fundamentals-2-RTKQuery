@@ -16,7 +16,7 @@ export const Tasks = () => {
 
     // const tasks = useAppSelector(selectTask)
     // const filter = useAppSelector(selectFilter)
-    const dispatch=useAppDispatch()
+    // const dispatch=useAppDispatch()
 
     return (
         <div className="mx-auto max-w-7xl px-5 mt-20">

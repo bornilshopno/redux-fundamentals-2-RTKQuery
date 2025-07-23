@@ -6,9 +6,16 @@ export const baseAPI=createApi({
     baseQuery: fetchBaseQuery({baseUrl:"http://localhost:5000/api"}),
     endpoints:(builder)=>({
         getTasks:builder.query({
-            query:()=>"tasks"
+            query:()=>"/tasks"
+        }),
+          createTasks:builder.mutation({
+            query:(taskData)=>({
+                url:"/tasks",
+                method: "POST",
+                body: taskData
+            })
         })
 })
 })
 
-export const {useGetTasksQuery} = baseAPI
+export const {useGetTasksQuery, useCreateTasksMutation} = baseAPI
