@@ -13,7 +13,9 @@ import {  useForm, type FieldValues, type SubmitHandler } from "react-hook-form"
 const AddUserModal = () => {
       const form = useForm();
         const dispatch= useAppDispatch();
-
+ const onSubmit: SubmitHandler<FieldValues> = async(data) => {
+    console.log(data)
+ }
        
     return (
          <Dialog>

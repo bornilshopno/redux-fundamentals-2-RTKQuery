@@ -28,7 +28,7 @@ import { useForm, type FieldValues, type SubmitHandler } from "react-hook-form"
 export function UpdateTaskModal({ selectedTask }: { selectedTask: Itask }) {
   const form = useForm({ defaultValues: selectedTask });
   const users = []
-  console.log("SELECTED DATA PROP", selectedTask)
+  
   const dispatch = useAppDispatch();
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
     console.log(data);

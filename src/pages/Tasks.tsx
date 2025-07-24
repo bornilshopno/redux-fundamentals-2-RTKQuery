@@ -9,6 +9,9 @@ import type { Itask } from "@/types"
 
 export const Tasks = () => {
     const { isLoading, data}=useGetTasksQuery(undefined)
+    // const { isLoading, data}=useGetTasksQuery(undefined, {refetchOnFocus:true})
+    // const { isLoading, data}=useGetTasksQuery(undefined, {refetchOnMountOrArgChange:true})
+    // const { isLoading, data}=useGetTasksQuery(undefined, {refetchOnReconnect:true})
     console.log(isLoading, data)
     if(isLoading){
         return <h1>Data is Loadin...</h1>

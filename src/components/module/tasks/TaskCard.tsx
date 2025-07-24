@@ -18,7 +18,7 @@ const TaskCard = ({task}:IProps) => {
     const dispatch=useAppDispatch();
     const users=[]
     const assignedTaskUser= users?.find((user)=>user.id===task.assignedUser)
-    console.log(assignedTaskUser)
+ 
     return (
         <div className="border px-5 py-3 rounded-md">
             <div className="flex justify-between items-start">

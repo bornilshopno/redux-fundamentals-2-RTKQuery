@@ -19,7 +19,6 @@ import { cn } from "@/lib/utils"
 import { useCreateTasksMutation } from "@/redux/api/baseApi"
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks/hooks"
-import type { Itask } from "@/types"
 import { format } from "date-fns"
 import { CalendarIcon } from "lucide-react"
 import { useState } from "react"
@@ -35,14 +34,12 @@ export function AddTaskModal() {
     const [open,setIsOpen]= useState(false)
      const [createTask,{isLoading,isError,data} ]= useCreateTasksMutation()
 
-     console.log(isLoading, 'isloading', data, "data")
        
-    const onSubmit: SubmitHandler<FieldValues> = (data) => {
-       
+    const onSubmit: SubmitHandler<FieldValues> = async(data) => { 
         const taskdata={...data, isCompleted: false, }
         setIsOpen(false);
-        createTask(taskdata)
-         console.log(taskdata, 'from onSubmit');
+        const res= await createTask(taskdata).unwrap()
+         console.log(res, 'from onSubmit');
         form.reset()
     }
     return (
