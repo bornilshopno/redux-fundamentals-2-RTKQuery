@@ -7,6 +7,45 @@ npm install @reduxjs/toolkit react-redux
 npm install --save-dev typescript @types/react @types/react-dom
 ```
 
+### Configuration 
+
+- vite.config.ts
+```ts
+import path from "path"
+import tailwindcss from "@tailwindcss/vite"
+import react from "@vitejs/plugin-react"
+import { defineConfig } from "vite"
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [react(), tailwindcss()],
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+})
+```
+
+- tsconfig.json
+
+```ts
+{
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ],
+    "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
+  }
+}
+
+```
+---------------------------------------------------------
 
 ## STEP-2 : Type Defination 
 
@@ -173,19 +212,19 @@ import { ITask } from '../types';
 </>
 }
 ```
-
+=====================================================
 
 ## Standard Folder Structure
 ```css
 src/
-├── app/
-│   └── store.ts
 ├── components/
 │   ├── AddTask.tsx
 │   └── TaskList.tsx
-├── features/
-│   └── api/
-│       └── apiSlice.ts
+├── redux/
+│   ├── store.ts
+│   └── features/
+│       └── api/
+│           └── taskSlice.ts
 ├── types.ts
 ├── App.tsx
 └── main.tsx
@@ -193,24 +232,17 @@ src/
 ```
 
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-
-
-
-
-
-
+======================================================================
 
 ## Manual Refetching in Redux
 
-## Option-1:  With tags
+#### Option-1:  With tags
 
 - pass a object as params in =>createAPI ( `tagTypes:['task'],` )
 - pass a object as params in get API => builder.query ( ` providesTags: ["task"],` )
 - pass a object as param in POST API=> builder.mutation (` invalidatesTags:["task"] `)
 
-## Option-2: 
+#### Option-2: 
 
 - using polling interval in the front end GET operation. example uses (cricinfo)
 - we need pass the obejct as params in =>getQuery( `{ pollingInterval: 1000 }` )
